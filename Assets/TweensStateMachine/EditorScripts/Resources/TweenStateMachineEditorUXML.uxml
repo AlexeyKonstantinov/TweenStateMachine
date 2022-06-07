@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label text="Test Label UI BUilder" display-tooltip-when-elided="true" style="font-size: 20px;" />
+    <uie:PropertyField label="States" binding-path="states" style="min-width: auto; min-height: 50px;" />
+</ui:UXML>
