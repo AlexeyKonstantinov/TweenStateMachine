@@ -14,5 +14,16 @@ namespace TweensStateMachine.Animations.Move
         {
             return target.DOMove(value, duration);
         }
+
+        public override void GetValue()
+        {
+            if (target == null)
+            {
+                Debug.Log("TARGET NULL!");
+                return;
+            }
+
+            value = target.position;
+        }
     }
 }

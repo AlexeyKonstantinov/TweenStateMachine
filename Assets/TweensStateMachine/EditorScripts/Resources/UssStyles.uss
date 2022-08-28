@@ -31,10 +31,58 @@
     background-color: rgb(176, 65, 62);
 }
 
-.animation-container{
+.animation-container {
     flex-direction: column;
 }
 
-.thin-property{
+.thin-property {
     font-size: 10px;
+}
+
+.track {
+    background-color: bisque;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-top-color: blue;
+    border-bottom-color: blue;
+}
+
+.track-element {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: blueviolet;
+    cursor: move-arrow;
+}
+
+.left-pane {
+    min-width: 150;
+    background-color: gray;
+}
+
+.left-pane-header {
+    height: 40;
+    background-color: darkgray;
+}
+
+.unity-two-pane-split-view--horizontal {
+    flex-direction: row-reverse;
+}
+
+.track-element-left-handle {
+    position: absolute;
+    left: -5;
+    top: 0;
+    bottom: 0;
+    width: 10;
+    cursor: resize-horizontal;
+}
+
+.track-element-right-handle {
+    position: absolute;
+    right: -5;
+    top: 0;
+    bottom: 0;
+    width: 10;
+    cursor: resize-horizontal;
 }

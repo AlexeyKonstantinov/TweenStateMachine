@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TweensStateMachine.Animations;
 using TweensStateMachine.Animations.Move;
 using UnityEngine;
 
@@ -22,27 +21,28 @@ namespace TweensStateMachine.Runtime.Core
             _currentTransitions = new List<Transition>();
         }
 
-        [ContextMenu("Add Move State")]
-        public void AddMoveState()
+        private void Update()
         {
-            states.Add(new State("NewState", new MoveAnimation()));
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SetState1();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                SetState2();
+            }
+        }
+
+        [ContextMenu("Set State_1")]
+        public void SetState1()
+        {
+            SetState("State_1");
         }
         
-        [ContextMenu("Add Sequence with Move Animaiton")]
-        public void AddSequenceWithMoveAnimation()
+        [ContextMenu("Set State_2")]
+        public void SetState2()
         {
-            var sequence = new SequenceAnimation();
-            sequence.AddAnimation(new MoveAnimation());
-            states.Add(new State("NewState", sequence));
-        }
-        
-        [ContextMenu("Add Sequence with 2 Move Animaiton")]
-        public void AddSequenceWithTwoMoveAnimation()
-        {
-            var sequence = new SequenceAnimation();
-            sequence.AddAnimation(new MoveAnimation());
-            sequence.AddAnimation(new MoveAnimation());
-            states.Add(new State("NewState", sequence, new MoveAnimation()));
+            SetState("State_2");
         }
 
         public void Tick()

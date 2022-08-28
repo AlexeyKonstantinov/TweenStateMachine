@@ -14,5 +14,10 @@ namespace TweensStateMachine.Animations.Scale
         {
             return target.DOScale(value, duration);
         }
+
+        public override void GetValue()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

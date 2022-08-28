@@ -36,5 +36,6 @@ namespace TweensStateMachine.Runtime.Core
         }
         
         protected abstract Tween StartInternal();
+        public abstract void GetValue();
     }
 }
