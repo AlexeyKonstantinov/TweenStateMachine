@@ -38,7 +38,6 @@ namespace TweensStateMachine.EditorScripts
                 var property = serializedObject.GetIterator();
                 property.NextVisible(true);
                 text += $"{property.propertyPath} \n \n";
-                // var endProperty = property.GetEndProperty();
                 while (property.NextVisible(true))
                 {
                     if (property.propertyType == SerializedPropertyType.ManagedReference)
@@ -46,26 +45,10 @@ namespace TweensStateMachine.EditorScripts
                         text += "Managed ref: ";
                     }
                     text += $"{property.propertyPath} \n \n";
-                    // if(SerializedProperty.EqualContents(property, endProperty))
-                    //     break;
                 }
 
                 Debug.Log(text);
             }
-        }
-
-        // public override VisualElement CreateInspectorGUI()
-        // {
-            // var root = new VisualElement();
-            // visualTreeAsset.CloneTree(root);
-            // _rootVisualElement = root;
-            // return root;
-        // }
-
-        public void UpdateAndRebind()
-        {
-            // serializedObject.Update();
-            // _rootVisualElement.Bind(serializedObject);
         }
     }
 }

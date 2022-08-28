@@ -1,10 +1,10 @@
 namespace UnityEngine.UIElements
 {
-  public class MyTwoPaneSplitViewResizer : MouseManipulator
+  public class CustomTwoPaneSplitViewResizer : MouseManipulator
   {
     private Vector2 m_Start;
     protected bool m_Active;
-    private MyTwoPaneSplitView m_SplitView;
+    private CustomTwoPaneSplitView m_SplitView;
     private int m_Direction;
     private TwoPaneSplitViewOrientation m_Orientation;
 
@@ -16,8 +16,8 @@ namespace UnityEngine.UIElements
 
     private float flexedPaneMinDimension => this.m_Orientation == TwoPaneSplitViewOrientation.Horizontal ? this.flexedPane.resolvedStyle.minWidth.value : this.flexedPane.resolvedStyle.minHeight.value;
 
-    public MyTwoPaneSplitViewResizer(
-      MyTwoPaneSplitView splitView,
+    public CustomTwoPaneSplitViewResizer(
+      CustomTwoPaneSplitView splitView,
       int dir,
       TwoPaneSplitViewOrientation orientation)
     {

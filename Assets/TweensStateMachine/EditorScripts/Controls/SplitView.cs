@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 
 namespace TweensStateMachine.EditorScripts
 {
-    public class SplitView : MyTwoPaneSplitView
+    public class SplitView : CustomTwoPaneSplitView
     {
         public new class UxmlFactory : UxmlFactory<SplitView, UxmlTraits>{}
 

@@ -27,14 +27,6 @@ namespace TweensStateMachine.EditorScripts
             contentContainer.style.flexGrow = 1;
             hierarchy.Insert(1, contentContainer);
             style.flexGrow = 1;
-
-            // var tab1 = new VisualElement();
-            // tab1.Add(new Button());
-            // tab1.Add(new Button());
-            //
-            // var tab2 = new SequenceElement();
-            // AddTab("tab1", tab1);
-            // AddTab("tab2", tab2);
         }
 
         public void AddTab(string tabName, VisualElement visualElement)

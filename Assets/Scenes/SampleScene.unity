@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515848744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.38, z: 0}
+  m_LocalPosition: {x: -0.81, y: 0.38, z: 0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -241,8 +241,6 @@ MonoBehaviour:
       animations:
       - id: 0
       - id: 1
-      - id: 2
-      - id: 3
   - stateName: State_2
     sequence:
       duration: 0
@@ -250,41 +248,38 @@ MonoBehaviour:
       ease: 1
       stateExitAction: 1
       animations:
+      - id: 2
+      - id: 3
       - id: 4
-      - id: 5
-      - id: 6
-      - id: 7
-      - id: 8
-      - id: 9
   references:
     version: 1
     00000000:
       type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
       data:
         duration: 1
-        delay: 0.5
+        delay: 0
         ease: 1
         stateExitAction: 0
         target: {fileID: 515848748}
-        value: {x: -0.18, y: 0.38, z: 0}
+        value: {x: -2.9, y: 0.38, z: -5.06}
     00000001:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
+      type: {class: ScaleUniformlyAnimation, ns: TweensStateMachine.Animations.Scale, asm: TweensStateMachine}
       data:
         duration: 0
         delay: 0
         ease: 1
         stateExitAction: 0
         target: {fileID: 0}
-        value: {x: -0.93, y: 0, z: 0}
+        value: 0
     00000002:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
+      type: {class: MoveXAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
       data:
-        duration: 0
+        duration: 1
         delay: 0
         ease: 1
         stateExitAction: 0
-        target: {fileID: 0}
-        value: {x: 0, y: 0, z: 0}
+        target: {fileID: 515848748}
+        value: -0.81
     00000003:
       type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
       data:
@@ -295,24 +290,6 @@ MonoBehaviour:
         target: {fileID: 0}
         value: {x: 0, y: 0, z: 0}
     00000004:
-      type: {class: MoveXAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
-      data:
-        duration: 0.5
-        delay: 0.5
-        ease: 1
-        stateExitAction: 0
-        target: {fileID: 515848748}
-        value: -1
-    00000005:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
-      data:
-        duration: 1
-        delay: 0.5
-        ease: 1
-        stateExitAction: 0
-        target: {fileID: 515848748}
-        value: {x: -1, y: 0.38, z: 0}
-    00000006:
       type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
       data:
         duration: 0
@@ -320,34 +297,7 @@ MonoBehaviour:
         ease: 1
         stateExitAction: 0
         target: {fileID: 0}
-        value: {x: 0, y: 0, z: 0}
-    00000007:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
-      data:
-        duration: 0
-        delay: 0
-        ease: 1
-        stateExitAction: 0
-        target: {fileID: 0}
-        value: {x: 0, y: 0, z: 0}
-    00000008:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
-      data:
-        duration: 0
-        delay: 0
-        ease: 1
-        stateExitAction: 0
-        target: {fileID: 0}
-        value: {x: 0, y: 0, z: 0}
-    00000009:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
-      data:
-        duration: 0
-        delay: 0
-        ease: 1
-        stateExitAction: 0
-        target: {fileID: 0}
-        value: {x: 0, y: 0, z: 0}
+        value: {x: -0.6, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

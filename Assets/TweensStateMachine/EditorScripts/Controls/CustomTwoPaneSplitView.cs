@@ -2,16 +2,16 @@ using System.Collections.Generic;
 
 namespace UnityEngine.UIElements
 {
-  public class MyTwoPaneSplitView : VisualElement
+  public class CustomTwoPaneSplitView : VisualElement
   {
     private static readonly string s_UssClassName = "unity-two-pane-split-view";
     private static readonly string s_ContentContainerClassName = "unity-two-pane-split-view__content-container";
     private static readonly string s_HandleDragLineClassName = "unity-two-pane-split-view__dragline";
-    private static readonly string s_HandleDragLineVerticalClassName = MyTwoPaneSplitView.s_HandleDragLineClassName + "--vertical";
-    private static readonly string s_HandleDragLineHorizontalClassName = MyTwoPaneSplitView.s_HandleDragLineClassName + "--horizontal";
+    private static readonly string s_HandleDragLineVerticalClassName = CustomTwoPaneSplitView.s_HandleDragLineClassName + "--vertical";
+    private static readonly string s_HandleDragLineHorizontalClassName = CustomTwoPaneSplitView.s_HandleDragLineClassName + "--horizontal";
     private static readonly string s_HandleDragLineAnchorClassName = "unity-two-pane-split-view__dragline-anchor";
-    private static readonly string s_HandleDragLineAnchorVerticalClassName = MyTwoPaneSplitView.s_HandleDragLineAnchorClassName + "--vertical";
-    private static readonly string s_HandleDragLineAnchorHorizontalClassName = MyTwoPaneSplitView.s_HandleDragLineAnchorClassName + "--horizontal";
+    private static readonly string s_HandleDragLineAnchorVerticalClassName = CustomTwoPaneSplitView.s_HandleDragLineAnchorClassName + "--vertical";
+    private static readonly string s_HandleDragLineAnchorHorizontalClassName = CustomTwoPaneSplitView.s_HandleDragLineAnchorClassName + "--horizontal";
     private static readonly string s_VerticalClassName = "unity-two-pane-split-view--vertical";
     private static readonly string s_HorizontalClassName = "unity-two-pane-split-view--horizontal";
     private VisualElement m_LeftPane;
@@ -25,7 +25,7 @@ namespace UnityEngine.UIElements
     private TwoPaneSplitViewOrientation m_Orientation;
     private int m_FixedPaneIndex;
     private float m_FixedPaneInitialDimension;
-    internal MyTwoPaneSplitViewResizer m_Resizer;
+    internal CustomTwoPaneSplitViewResizer m_Resizer;
 
     public VisualElement fixedPane => this.m_FixedPane;
 
@@ -64,24 +64,24 @@ namespace UnityEngine.UIElements
       }
     }
 
-    public MyTwoPaneSplitView()
+    public CustomTwoPaneSplitView()
     {
-      this.AddToClassList(MyTwoPaneSplitView.s_UssClassName);
+      this.AddToClassList(CustomTwoPaneSplitView.s_UssClassName);
       this.m_Content = new VisualElement();
       this.m_Content.name = "unity-content-container";
-      this.m_Content.AddToClassList(MyTwoPaneSplitView.s_ContentContainerClassName);
+      this.m_Content.AddToClassList(CustomTwoPaneSplitView.s_ContentContainerClassName);
       this.hierarchy.Add(this.m_Content);
       this.m_DragLineAnchor = new VisualElement();
       this.m_DragLineAnchor.name = "unity-dragline-anchor";
-      this.m_DragLineAnchor.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineAnchorClassName);
+      this.m_DragLineAnchor.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineAnchorClassName);
       this.hierarchy.Add(this.m_DragLineAnchor);
       this.m_DragLine = new VisualElement();
       this.m_DragLine.name = "unity-dragline";
-      this.m_DragLine.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineClassName);
+      this.m_DragLine.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineClassName);
       this.m_DragLineAnchor.Add(this.m_DragLine);
     }
 
-    public MyTwoPaneSplitView(
+    public CustomTwoPaneSplitView(
       int fixedPaneIndex,
       float fixedPaneStartDimension,
       TwoPaneSplitViewOrientation orientation)
@@ -135,28 +135,28 @@ namespace UnityEngine.UIElements
       this.m_Orientation = orientation;
       this.m_FixedPaneIndex = fixedPaneIndex;
       this.m_FixedPaneInitialDimension = fixedPaneInitialDimension;
-      this.m_Content.RemoveFromClassList(MyTwoPaneSplitView.s_HorizontalClassName);
-      this.m_Content.RemoveFromClassList(MyTwoPaneSplitView.s_VerticalClassName);
+      this.m_Content.RemoveFromClassList(CustomTwoPaneSplitView.s_HorizontalClassName);
+      this.m_Content.RemoveFromClassList(CustomTwoPaneSplitView.s_VerticalClassName);
       if (this.m_Orientation == TwoPaneSplitViewOrientation.Horizontal)
-        this.m_Content.AddToClassList(MyTwoPaneSplitView.s_HorizontalClassName);
+        this.m_Content.AddToClassList(CustomTwoPaneSplitView.s_HorizontalClassName);
       else
-        this.m_Content.AddToClassList(MyTwoPaneSplitView.s_VerticalClassName);
-      this.m_DragLineAnchor.RemoveFromClassList(MyTwoPaneSplitView.s_HandleDragLineAnchorHorizontalClassName);
-      this.m_DragLineAnchor.RemoveFromClassList(MyTwoPaneSplitView.s_HandleDragLineAnchorVerticalClassName);
+        this.m_Content.AddToClassList(CustomTwoPaneSplitView.s_VerticalClassName);
+      this.m_DragLineAnchor.RemoveFromClassList(CustomTwoPaneSplitView.s_HandleDragLineAnchorHorizontalClassName);
+      this.m_DragLineAnchor.RemoveFromClassList(CustomTwoPaneSplitView.s_HandleDragLineAnchorVerticalClassName);
       if (this.m_Orientation == TwoPaneSplitViewOrientation.Horizontal)
-        this.m_DragLineAnchor.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineAnchorHorizontalClassName);
+        this.m_DragLineAnchor.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineAnchorHorizontalClassName);
       else
-        this.m_DragLineAnchor.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineAnchorVerticalClassName);
-      this.m_DragLine.RemoveFromClassList(MyTwoPaneSplitView.s_HandleDragLineHorizontalClassName);
-      this.m_DragLine.RemoveFromClassList(MyTwoPaneSplitView.s_HandleDragLineVerticalClassName);
+        this.m_DragLineAnchor.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineAnchorVerticalClassName);
+      this.m_DragLine.RemoveFromClassList(CustomTwoPaneSplitView.s_HandleDragLineHorizontalClassName);
+      this.m_DragLine.RemoveFromClassList(CustomTwoPaneSplitView.s_HandleDragLineVerticalClassName);
       if (this.m_Orientation == TwoPaneSplitViewOrientation.Horizontal)
-        this.m_DragLine.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineHorizontalClassName);
+        this.m_DragLine.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineHorizontalClassName);
       else
-        this.m_DragLine.AddToClassList(MyTwoPaneSplitView.s_HandleDragLineVerticalClassName);
+        this.m_DragLine.AddToClassList(CustomTwoPaneSplitView.s_HandleDragLineVerticalClassName);
       if (this.m_Resizer != null)
       {
         this.m_DragLineAnchor.RemoveManipulator((IManipulator) this.m_Resizer);
-        this.m_Resizer = (MyTwoPaneSplitViewResizer) null;
+        this.m_Resizer = (CustomTwoPaneSplitViewResizer) null;
       }
       if (this.m_Content.childCount != 2)
         this.RegisterCallback<GeometryChangedEvent>(new EventCallback<GeometryChangedEvent>(this.OnPostDisplaySetup));
@@ -226,7 +226,7 @@ namespace UnityEngine.UIElements
         else
           this.m_DragLineAnchor.style.top = this.m_FixedPaneIndex != 0 ? (StyleLength) (this.resolvedStyle.height - this.m_FixedPaneInitialDimension) : (StyleLength) this.m_FixedPaneInitialDimension;
         int dir = this.m_FixedPaneIndex != 0 ? -1 : 1;
-        this.m_Resizer = this.m_FixedPaneIndex != 0 ? new MyTwoPaneSplitViewResizer(this, dir, this.m_Orientation) : new MyTwoPaneSplitViewResizer(this, dir, this.m_Orientation);
+        this.m_Resizer = this.m_FixedPaneIndex != 0 ? new CustomTwoPaneSplitViewResizer(this, dir, this.m_Orientation) : new CustomTwoPaneSplitViewResizer(this, dir, this.m_Orientation);
         this.m_DragLineAnchor.AddManipulator((IManipulator) this.m_Resizer);
         this.UnregisterCallback<GeometryChangedEvent>(new EventCallback<GeometryChangedEvent>(this.OnPostDisplaySetup));
         this.RegisterCallback<GeometryChangedEvent>(new EventCallback<GeometryChangedEvent>(this.OnSizeChange));
@@ -285,7 +285,7 @@ namespace UnityEngine.UIElements
         this.m_FixedPane.style.height = (StyleLength) dimension;
     }
 
-    public new class UxmlFactory : UnityEngine.UIElements.UxmlFactory<MyTwoPaneSplitView, MyTwoPaneSplitView.UxmlTraits>
+    public new class UxmlFactory : UnityEngine.UIElements.UxmlFactory<CustomTwoPaneSplitView, CustomTwoPaneSplitView.UxmlTraits>
     {
     }
 
@@ -309,7 +309,7 @@ namespace UnityEngine.UIElements
         int valueFromBag1 = this.m_FixedPaneIndex.GetValueFromBag(bag, cc);
         int valueFromBag2 = this.m_FixedPaneInitialDimension.GetValueFromBag(bag, cc);
         TwoPaneSplitViewOrientation valueFromBag3 = this.m_Orientation.GetValueFromBag(bag, cc);
-        ((MyTwoPaneSplitView) ve).Init(valueFromBag1, (float) valueFromBag2, valueFromBag3);
+        ((CustomTwoPaneSplitView) ve).Init(valueFromBag1, (float) valueFromBag2, valueFromBag3);
       }
 
       public UxmlTraits()

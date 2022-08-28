@@ -57,6 +57,7 @@ namespace TweensStateMachine
                 var animation = animationsProperty.GetArrayElementAtIndex(i);
                 AddAnimation(animation);
             }
+            this.Bind(_stateProperty.serializedObject);
         }
 
         private void AddAnimation(SerializedProperty animationProperty)
@@ -139,7 +140,6 @@ namespace TweensStateMachine
                     EditorUtility.SetDirty(stateProperty.serializedObject.targetObject);
                     stateProperty.serializedObject.Update();
                     Rebuild();
-                    this.Bind(stateProperty.serializedObject);
                 });
             }
             menu.ShowAsContext();
