@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TweensStateMachine.EditorScripts
 {
-    [CustomEditor(typeof(TweenStateMachine))]
+    [CustomEditor(typeof(TSMAnimation))]
     public class TweenStateMachineEditor : Editor
     {
         public VisualTreeAsset visualTreeAsset;
@@ -17,18 +17,18 @@ namespace TweensStateMachine.EditorScripts
             if (GUILayout.Button("Open Editor"))
             {
                 var wnd = TweenStateMachineWindow.Open();
-                wnd.Init((TweenStateMachine) target);
+                wnd.Init((TSMAnimation) target);
             }
             
             if (GUILayout.Button("Add State"))
             {
-                var tgt = (TweenStateMachine) target;
+                var tgt = (TSMAnimation) target;
                 tgt.AddState("State_1", new MoveAnimation());
             }
             
             if (GUILayout.Button("Add State 2"))
             {
-                var tgt = (TweenStateMachine) target;
+                var tgt = (TSMAnimation) target;
                 tgt.AddState("State_2", new MoveXAnimation());
             }
             

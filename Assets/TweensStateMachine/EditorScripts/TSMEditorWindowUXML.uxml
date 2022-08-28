@@ -1,4 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="Resources/UssStyles.uss" />
-    <ui:VisualElement name="root" style="flex-grow: 1;" />
+    <ui:VisualElement name="root" style="flex-grow: 1;">
+        <ui:VisualElement>
+            <ui:Button text="Add State" display-tooltip-when-elided="true" name="addStateButton" />
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

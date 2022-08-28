@@ -8,7 +8,7 @@ namespace TweensStateMachine.Runtime.Core
     public class SequenceAnimation : AnimationBase
     {
         [SerializeReference]
-        private List<AnimationBase> animations = new List<AnimationBase>();
+        public List<AnimationBase> animations = new List<AnimationBase>();
 
         public SequenceAnimation()
         {

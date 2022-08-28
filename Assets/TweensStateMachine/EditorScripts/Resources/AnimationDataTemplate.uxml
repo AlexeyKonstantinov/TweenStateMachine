@@ -2,7 +2,8 @@
     <ui:VisualElement name="container" style="flex-grow: 1; height: auto; max-height: 80px; min-width: 150px; background-color: rgb(183, 183, 183); max-width: none; min-height: 80px; color: rgb(0, 0, 0);">
         <ui:VisualElement style="width: auto; height: 10px; flex-direction: row;">
             <ui:Label text="Local Move X" display-tooltip-when-elided="true" name="nameLabel" style="color: rgb(0, 0, 0); font-size: 10px; flex-grow: 1; flex-shrink: 1;" />
-            <uie:PropertyField name="staProperty" style="flex-grow: 1; width: 40px; max-width: 40px; min-width: 40px; color: rgb(255, 126, 126); font-size: 6px;" />
+            <uie:PropertyField name="seaProperty" style="flex-grow: 1; width: 40px; max-width: 40px; min-width: 40px; color: rgb(255, 126, 126); font-size: 6px;" />
+            <ui:Button text="X" display-tooltip-when-elided="true" name="closeButton" style="width: 10px; margin-left: 1px; margin-right: 1px; padding-left: 2px; padding-right: 2px; color: rgba(255, 255, 255, 255); font-size: 6px;" />
         </ui:VisualElement>
         <ui:VisualElement name="targetContainer" style="flex-direction: row; color: rgb(0, 0, 0);">
             <ui:Label text="Target" display-tooltip-when-elided="true" style="color: rgb(0, 0, 0);" />

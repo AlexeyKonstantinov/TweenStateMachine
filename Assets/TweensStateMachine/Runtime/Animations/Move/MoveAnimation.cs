@@ -17,9 +17,7 @@ namespace TweensStateMachine.Animations.Move
 
         public override void GetValue()
         {
-            if (target == null)
-            {
-                Debug.Log("TARGET NULL!");
+            if (target == null) {
                 return;
             }
 

@@ -17,7 +17,11 @@ namespace TweensStateMachine.Animations.Scale
 
         public override void GetValue()
         {
-            throw new System.NotImplementedException();
+            if (target == null) {
+                return;
+            }
+
+            value = target.localScale;
         }
     }
 }

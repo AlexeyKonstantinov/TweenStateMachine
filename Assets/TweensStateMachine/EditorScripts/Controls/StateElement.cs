@@ -100,9 +100,22 @@ namespace TweensStateMachine
             var getButton = animDataElement.Q<Button>("getButton");
             getButton.RegisterCallback<ClickEvent, SerializedProperty>(GetButtonClick, animationProperty);
 
+            var closeButton = animDataElement.Q<Button>("closeButton");
+            closeButton.RegisterCallback<ClickEvent, SerializedProperty>(CloseButtonClick, animationProperty);
+
             _leftPane.Add(animDataElement);
             
             _sequenceElement.AddTrack(animationProperty);
+        }
+
+        private void CloseButtonClick(ClickEvent evt, SerializedProperty animationProperty)
+        {
+            var animObj = (AnimationBase) SerializedFieldHelper.GetTargetObjectOfProperty(animationProperty);
+            var stateObj = (State) SerializedFieldHelper.GetTargetObjectOfProperty(_stateProperty);
+            stateObj.sequence.animations.Remove(animObj);
+            EditorUtility.SetDirty(_stateProperty.serializedObject.targetObject);
+            _stateProperty.serializedObject.Update();
+            Rebuild();
         }
 
         private void GetButtonClick(ClickEvent evt, SerializedProperty animationProperty)

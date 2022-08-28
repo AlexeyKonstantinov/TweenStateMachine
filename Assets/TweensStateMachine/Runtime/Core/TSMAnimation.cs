@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TweensStateMachine.Runtime.Core
 {
-    public class TweenStateMachine : MonoBehaviour
+    public class TSMAnimation : MonoBehaviour
     {
         public List<State> states = new List<State>();
         private Dictionary<string, List<Transition>> _transitions;

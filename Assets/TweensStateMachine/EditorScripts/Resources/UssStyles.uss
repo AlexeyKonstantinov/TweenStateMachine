@@ -1,3 +1,16 @@
+.animation-base {
+    border-radius: 5px;
+    margin: 5px;
+    border-left-width: 2px;
+    border-right-width: 2px;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+    border-left-color: rgb(255, 0, 0);
+    border-right-color: rgb(255, 0, 0);
+    border-top-color: rgb(255, 0, 0);
+    border-bottom-color: rgb(255, 0, 0);
+}
+
 .delete-button {
     position: absolute;
     right: 9px;
@@ -85,4 +98,14 @@
     bottom: 0;
     width: 10;
     cursor: resize-horizontal;
+}
+
+.toolbar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 21;
+}
+
+.toolbar-toggle {
+    max-width: 100;
 }

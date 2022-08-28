@@ -12,7 +12,7 @@ namespace TweensStateMachine.EditorScripts
         private VisualElement _toolbar;
 
         public event Action OnTabClick;
-        
+
         public new class UxmlFactory : UxmlFactory<TabView, UxmlTraits>{}
 
         public sealed override VisualElement contentContainer { get; }
@@ -22,6 +22,7 @@ namespace TweensStateMachine.EditorScripts
             _tabs = new Dictionary<string, VisualElement>();
             _tabToggles = new Dictionary<string, ToolbarToggle>();
             _toolbar = new Toolbar();
+            _toolbar.AddToClassList("toolbar");
             hierarchy.Add(_toolbar);
             contentContainer = new VisualElement {name = "Content"};
             contentContainer.style.flexGrow = 1;
@@ -35,9 +36,15 @@ namespace TweensStateMachine.EditorScripts
                 throw new InvalidOperationException($"Tab with name '{tabName}' already exists.");
             _tabs.Add(tabName, visualElement);
             var toggle = new ToolbarToggle {name = tabName, text = tabName};
+            toggle.AddToClassList("toolbar-toggle");
             toggle.RegisterCallback<ClickEvent, string>(ClickTabToggle, tabName);
             _toolbar.Add(toggle);
             _tabToggles.Add(tabName, toggle);
+        }
+
+        public ToolbarToggle GetToggle(string tabName)
+        {
+            return _tabToggles[tabName];
         }
 
         private void ClickTabToggle(ClickEvent evt, string tabName)

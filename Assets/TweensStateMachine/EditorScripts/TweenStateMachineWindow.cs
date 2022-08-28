@@ -11,6 +11,7 @@ namespace TweensStateMachine.EditorScripts
         public VisualTreeAsset visualTree;
         private TabView _tabView;
         private SerializedObject _serializedObject;
+        private TSMAnimation _target;
     
         public static TweenStateMachineWindow Open()
         {
@@ -19,12 +20,18 @@ namespace TweensStateMachine.EditorScripts
             return wnd;
         }
 
-        public void Init(TweenStateMachine target)
+        public void Init(TSMAnimation target)
+        {
+            _target = target;
+            _serializedObject = new SerializedObject(target);
+            Rebuild();
+        }
+
+        private void Rebuild()
         {
             rootVisualElement.Clear();
             var wnd = visualTree.CloneTree();
             wnd.style.flexGrow = 1;
-            _serializedObject = new SerializedObject(target);
             var root = wnd.Q("root");
             var statesProp = _serializedObject.FindProperty("states");
 
@@ -37,11 +44,31 @@ namespace TweensStateMachine.EditorScripts
                 var stateProp = statesProp.GetArrayElementAtIndex(i);
                 var stateElement = new StateElement();
                 stateElement.Init(stateProp);
-                _tabView.AddTab($"{stateProp.FindPropertyRelative("stateName").stringValue}", stateElement);
+                var stateName = stateProp.FindPropertyRelative("stateName").stringValue;
+                _tabView.AddTab($"{stateName}", stateElement);
+                _tabView.GetToggle(stateName).RegisterCallback<MouseDownEvent, string>(TabviewToggleClicked, stateName);
             }
             
             rootVisualElement.Add(wnd);
-            // rootVisualElement.Bind(_serializedObject);
+        }
+
+        private void TabviewToggleClicked(MouseDownEvent evt, string stateName)
+        {
+            Debug.Log(evt.pressedButtons);
+            if (evt.pressedButtons != 2) {
+                return;
+            }
+            
+            var menu = new GenericMenu();
+            menu.AddItemString("Delete", () =>
+            {
+                var index = _target.states.FindIndex(x => x.stateName == stateName);
+                _target.states.RemoveAt(index);
+                EditorUtility.SetDirty(_target);
+                _serializedObject.Update();
+                Rebuild();
+            });
+            menu.ShowAsContext();
         }
 
         private void OnDestroy()

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class StateMachineTest : MonoBehaviour
 {
-    public TweenStateMachine stateMachine;
+    public TSMAnimation stateMachine;
     public bool stateOne;
 
     [ContextMenu("Add States")]
