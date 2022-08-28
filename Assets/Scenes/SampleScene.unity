@@ -240,6 +240,13 @@ MonoBehaviour:
       stateExitAction: 1
       animations:
       - id: 0
+  - stateName: State228
+    sequence:
+      duration: 0
+      delay: 0
+      ease: 1
+      stateExitAction: 1
+      animations: []
   references:
     version: 1
     00000000:

@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PopupWindow = UnityEditor.PopupWindow;
 
 namespace TweensStateMachine.EditorScripts
 {
@@ -48,13 +49,26 @@ namespace TweensStateMachine.EditorScripts
                 _tabView.AddTab($"{stateName}", stateElement);
                 _tabView.GetToggle(stateName).RegisterCallback<MouseDownEvent, string>(TabviewToggleClicked, stateName);
             }
+
+            var addStateButton = wnd.Q<Button>("addStateButton");
+            addStateButton.RegisterCallback<ClickEvent>(evt =>
+            {
+                PopupWindow.Show(new Rect(evt.localPosition.x,evt.localPosition.y, 0,0), new PopupWithTextField("Add state", "State name:", "Add", AddState, _target));
+            });
             
             rootVisualElement.Add(wnd);
         }
 
+        private void AddState(string stateName)
+        {
+            _target.AddState(stateName);
+            EditorUtility.SetDirty(_target);
+            _serializedObject.Update();
+            Rebuild();
+        }
+
         private void TabviewToggleClicked(MouseDownEvent evt, string stateName)
         {
-            Debug.Log(evt.pressedButtons);
             if (evt.pressedButtons != 2) {
                 return;
             }
