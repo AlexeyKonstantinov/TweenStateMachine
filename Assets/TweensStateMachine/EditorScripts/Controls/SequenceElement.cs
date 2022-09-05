@@ -20,10 +20,12 @@ namespace TweensStateMachine
         public Label ScaleLabel;
 
         private List<ITimeline> _timeScaleDependents;
+        private List<Track> _tracks;
 
         public SequenceElement()
         {
             _timeScaleDependents = new List<ITimeline>();
+            _tracks = new List<Track>();
             ScaleLabel = new Label();
             ScaleLabel.text = $"upp: {SecondsPerPixel.ToString()}";
             ScaleLabel.style.position = Position.Absolute;
@@ -46,14 +48,24 @@ namespace TweensStateMachine
         {
             _timeScaleDependents.Clear();
             _timeScaleDependents.Add(TimelineElement);
+            _tracks.Clear();
             TrackContainer.Clear();
         }
 
         public void AddTrack(SerializedProperty animProperty)
         {
             var track = new Track(animProperty);
+            _tracks.Add(track);
             _timeScaleDependents.Add(track);
             TrackContainer.Add(track);
+        }
+
+        public void UpdateViewWithSerializedData()
+        {
+            foreach (var track in _tracks)
+            {
+                track.UpdateViewWithSerializedData();
+            }
         }
 
         public void SetSecondsPerPixel(float seconds)

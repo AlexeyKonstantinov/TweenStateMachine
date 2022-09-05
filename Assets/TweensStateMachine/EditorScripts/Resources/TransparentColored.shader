@@ -7,6 +7,7 @@ Shader "Unlit/Transparent Colored" {
         Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
         
         ZWrite Off
+        ZTest Off
         Lighting Off
         Fog { Mode Off }
 

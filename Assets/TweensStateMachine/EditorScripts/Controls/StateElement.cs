@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TweensStateMachine.EditorScripts;
 using TweensStateMachine.Runtime.Core;
 using UnityEditor;
@@ -23,7 +24,7 @@ namespace TweensStateMachine
         {
             style.flexGrow = 1;
             style.flexShrink = 1;
-            _splitView = new SplitView(0, 150, TwoPaneSplitViewOrientation.Horizontal);
+            _splitView = new SplitView(0, 200, TwoPaneSplitViewOrientation.Horizontal);
             _sequenceElement = new SequenceElement();
             _splitView.Add(_sequenceElement);
             _leftPane = new VisualElement {name = "Left Pane"};
@@ -31,7 +32,7 @@ namespace TweensStateMachine
             _leftPaneHeader = new VisualElement {name = "Left Pane Header"};
             _leftPaneHeader.AddToClassList("left-pane-header");
             _leftPaneHeader.Add(new Label("Tweens"));
-            _addSequenceButton = new Button {text = "+"};
+            _addSequenceButton = new Button {text = "Add Tween"};
             _leftPaneHeader.Add(_addSequenceButton);
             _leftPane.Add(_leftPaneHeader);
             _splitView.Add(_leftPane);
@@ -43,6 +44,11 @@ namespace TweensStateMachine
             _stateProperty = stateProperty;
             _addSequenceButton.RegisterCallback<ClickEvent, SerializedProperty>(OpenAddMenu, _stateProperty);
             Rebuild();
+        }
+
+        public void UpdateViewWithSerializedData()
+        {
+            _sequenceElement.UpdateViewWithSerializedData();
         }
 
         private void Rebuild()
@@ -64,13 +70,19 @@ namespace TweensStateMachine
         {
             var animDataElementUxml = Resources.Load<VisualTreeAsset>("AnimationDataTemplate");
             var animDataElement = animDataElementUxml.CloneTree();
+
+            var animationNameLabel = animDataElement.Q<Label>("nameLabel");
+            var animType = SerializedFieldHelper.GetTargetObjectOfProperty(animationProperty).GetType().ToString();
+            animType = animType.Split('.').Last();
+            animType = animType.Replace("Animation", "");
+            animationNameLabel.text = animType;
             
             var durationField = animDataElement.Q<FloatField>("durationField");
             durationField.bindingPath = animationProperty.propertyPath + ".duration";
             
             var delayField = animDataElement.Q<FloatField>("delayField");
             delayField.bindingPath = animationProperty.propertyPath + ".delay";
-
+            
             var targetProp = animationProperty.FindPropertyRelative("target");
             if (targetProp != null)
             {
@@ -88,12 +100,14 @@ namespace TweensStateMachine
                     var propElement = new Vector3Field();
                     valueFieldContainer.Add(propElement);
                     propElement.bindingPath = valueProperty.propertyPath;
+                    propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
                 }
                 else if (valueProperty.propertyType == SerializedPropertyType.Float)
                 {
                     var propElement = new FloatField();
                     valueFieldContainer.Add(propElement);
                     propElement.bindingPath = valueProperty.propertyPath;
+                    propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
                 }
             }
 

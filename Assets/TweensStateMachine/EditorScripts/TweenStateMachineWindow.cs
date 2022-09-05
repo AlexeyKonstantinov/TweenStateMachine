@@ -13,6 +13,7 @@ namespace TweensStateMachine.EditorScripts
         private TabView _tabView;
         private SerializedObject _serializedObject;
         private TSMAnimation _target;
+        private StateElement _stateElement;
     
         public static TweenStateMachineWindow Open()
         {
@@ -45,6 +46,7 @@ namespace TweensStateMachine.EditorScripts
                 var stateProp = statesProp.GetArrayElementAtIndex(i);
                 var stateElement = new StateElement();
                 stateElement.Init(stateProp);
+                stateElement.RegisterCallback<ChangeEvent<float>>(_ => stateElement.UpdateViewWithSerializedData());
                 var stateName = stateProp.FindPropertyRelative("stateName").stringValue;
                 _tabView.AddTab($"{stateName}", stateElement);
                 _tabView.GetToggle(stateName).RegisterCallback<MouseDownEvent, string>(TabviewToggleClicked, stateName);

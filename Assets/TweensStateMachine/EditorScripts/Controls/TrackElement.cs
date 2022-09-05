@@ -50,7 +50,13 @@ namespace TweensStateMachine
             seconds = Mathf.Clamp(seconds, 0, EndTime - Snap);
             StartTime = seconds;
             _animProperty.SetDelayProperty(seconds);
-            _animProperty.SetDurationProperty(EndTime - StartTime);
+            var duration = EndTime - StartTime;
+            var modulus = duration % Snap;
+            duration -= modulus;
+            if (modulus >= Snap / 2) {
+                duration += Snap;
+            }
+            _animProperty.SetDurationProperty(duration);
             _animProperty.serializedObject.ApplyModifiedProperties();
             _animProperty.serializedObject.Update();
             UpdateView();
@@ -60,7 +66,13 @@ namespace TweensStateMachine
         {
             seconds = Mathf.Clamp(seconds, StartTime + Snap, float.MaxValue);
             EndTime = seconds;
-            _animProperty.SetDurationProperty(EndTime - StartTime);
+            var duration = EndTime - StartTime;
+            var modulus = duration % Snap;
+            duration -= modulus;
+            if (modulus >= Snap / 2) {
+                duration += Snap;
+            }
+            _animProperty.SetDurationProperty(duration);
             _animProperty.serializedObject.ApplyModifiedProperties();
             _animProperty.serializedObject.Update();
             UpdateView();
@@ -81,6 +93,14 @@ namespace TweensStateMachine
         {
             style.left = (StartTime - _track.StartingPosition) / _track.SecondsPerPixel;
             style.width = (EndTime - StartTime) / _track.SecondsPerPixel;
+        }
+
+        public void UpdateViewWithSerializedData()
+        {
+            _animProperty.serializedObject.Update();
+            StartTime = _animProperty.GetDelayProperty();
+            EndTime = StartTime + _animProperty.GetDurationProperty();
+            UpdateView();
         }
     }
 }

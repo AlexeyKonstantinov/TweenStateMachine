@@ -54,6 +54,7 @@
 
 .track {
     background-color: bisque;
+    opacity: .6;
     border-top-width: 1px;
     border-bottom-width: 1px;
     border-top-color: blue;
@@ -69,7 +70,7 @@
 }
 
 .left-pane {
-    min-width: 150;
+    min-width: 200;
     background-color: gray;
 }
 

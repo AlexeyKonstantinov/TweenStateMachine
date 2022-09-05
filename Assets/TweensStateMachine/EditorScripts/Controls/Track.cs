@@ -36,5 +36,10 @@ namespace TweensStateMachine
             StartingPosition = seconds;
             _trackElement.UpdateView();
         }
+
+        public void UpdateViewWithSerializedData()
+        {
+            _trackElement.UpdateViewWithSerializedData();
+        }
     }
 }
