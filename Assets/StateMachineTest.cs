@@ -1,6 +1,6 @@
+using DG.Tweening;
 using TweensStateMachine;
-using TweensStateMachine.Animations;
-using TweensStateMachine.Animations.Move;
+using TweensStateMachine.Runtime.Animations.TransformAnimations;
 using TweensStateMachine.Runtime.Core;
 using UnityEngine;
 

@@ -1,4 +1,4 @@
-using TweensStateMachine.Animations.Move;
+using TweensStateMachine.Runtime.Animations.TransformAnimations;
 using UnityEditor;
 using UnityEngine.UIElements;
 using TweensStateMachine.Runtime.Core;

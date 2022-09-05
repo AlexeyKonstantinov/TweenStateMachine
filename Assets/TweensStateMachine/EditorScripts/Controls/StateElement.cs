@@ -5,7 +5,11 @@ using TweensStateMachine.Runtime.Core;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UIElements.Button;
+using Image = UnityEngine.UI.Image;
+using Slider = UnityEngine.UI.Slider;
 
 namespace TweensStateMachine
 {
@@ -73,9 +77,11 @@ namespace TweensStateMachine
 
             var animationNameLabel = animDataElement.Q<Label>("nameLabel");
             var animType = SerializedFieldHelper.GetTargetObjectOfProperty(animationProperty).GetType().ToString();
-            animType = animType.Split('.').Last();
-            animType = animType.Replace("Animation", "");
-            animationNameLabel.text = animType;
+            var animTypeName = animType.Split('.').ToList();
+
+            animationNameLabel.text =
+                string.Concat(animTypeName[animTypeName.Count - 2].Replace("Animations", ""),
+                    " > ", animTypeName[animTypeName.Count - 1].Replace("Animation", ""));
             
             var durationField = animDataElement.Q<FloatField>("durationField");
             durationField.bindingPath = animationProperty.propertyPath + ".duration";
@@ -105,6 +111,27 @@ namespace TweensStateMachine
                 else if (valueProperty.propertyType == SerializedPropertyType.Float)
                 {
                     var propElement = new FloatField();
+                    valueFieldContainer.Add(propElement);
+                    propElement.bindingPath = valueProperty.propertyPath;
+                    propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
+                }
+                else if (valueProperty.propertyType == SerializedPropertyType.Color)
+                {
+                    var propElement = new ColorField();
+                    valueFieldContainer.Add(propElement);
+                    propElement.bindingPath = valueProperty.propertyPath;
+                    propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
+                }
+                else if (valueProperty.propertyType == SerializedPropertyType.Gradient)
+                {
+                    var propElement = new GradientField();
+                    valueFieldContainer.Add(propElement);
+                    propElement.bindingPath = valueProperty.propertyPath;
+                    propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
+                }
+                else if (valueProperty.propertyType == SerializedPropertyType.Vector2)
+                {
+                    var propElement = new Vector2Field();
                     valueFieldContainer.Add(propElement);
                     propElement.bindingPath = valueProperty.propertyPath;
                     propElement.Query<Label>().ForEach(label => label.style.color = Color.black);
@@ -149,6 +176,38 @@ namespace TweensStateMachine
             {
                 return typeof(Transform);
             }
+            if (typeName == "Light")
+            {
+                return typeof(Light);
+            }
+            if (typeName == "Camera")
+            {
+                return typeof(Camera);
+            }
+            if (typeName == "CanvasGroup")
+            {
+                return typeof(CanvasGroup);
+            }
+            if (typeName == "Image")
+            {
+                return typeof(Image);
+            }
+            if (typeName == "RectTransform")
+            {
+                return typeof(Image);
+            }
+            if (typeName == "ScrollRect")
+            {
+                return typeof(ScrollRect);
+            }
+            if (typeName == "Slider")
+            {
+                return typeof(Slider);
+            }
+            if (typeName == "SpriteRenderer")
+            {
+                return typeof(SpriteRenderer);
+            }
 
             throw new InvalidOperationException("Wrong property type");
         }
@@ -158,7 +217,8 @@ namespace TweensStateMachine
             var menu = new GenericMenu();
             foreach (var type in TypeCache.GetTypesDerivedFrom<TweenAnimation>())
             {
-                var className = type.FullName.Replace("TweensStateMachine.Animations.", "").Replace(".", "/");
+                var className = type.FullName.Replace("TweensStateMachine.Runtime.Animations.", "")
+                    .Replace("Animations", "").Replace("Animation", "").Replace(".", "/");
                 menu.AddItemString(className, () =>
                 {
                     var state = (State) SerializedFieldHelper.GetTargetObjectOfProperty(stateProperty);

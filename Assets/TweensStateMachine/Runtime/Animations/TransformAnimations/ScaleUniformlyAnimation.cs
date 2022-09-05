@@ -2,7 +2,7 @@ using DG.Tweening;
 using TweensStateMachine.Runtime.Core;
 using UnityEngine;
 
-namespace TweensStateMachine.Animations.Scale
+namespace TweensStateMachine.Runtime.Animations.TransformAnimations
 {
     [System.Serializable]
     public class ScaleUniformlyAnimation : TweenAnimation

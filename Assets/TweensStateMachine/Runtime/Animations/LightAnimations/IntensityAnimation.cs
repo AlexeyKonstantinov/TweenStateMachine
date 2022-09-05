@@ -2,17 +2,17 @@ using DG.Tweening;
 using TweensStateMachine.Runtime.Core;
 using UnityEngine;
 
-namespace TweensStateMachine.Animations.Move
+namespace TweensStateMachine.Runtime.Animations.LightAnimations
 {
     [System.Serializable]
-    public class MoveAnimation : TweenAnimation
+    public class IntensityAnimation : TweenAnimation
     {
-        public Transform target;
-        public Vector3 value;
+        public Light target;
+        public float value;
 
         protected override Tween StartInternal()
         {
-            return target.DOMove(value, duration);
+            return target.DOIntensity(value, duration);
         }
 
         public override void GetValue()
@@ -21,7 +21,7 @@ namespace TweensStateMachine.Animations.Move
                 return;
             }
 
-            value = target.position;
+            value = target.intensity;
         }
     }
 }

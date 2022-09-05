@@ -2,17 +2,17 @@ using DG.Tweening;
 using TweensStateMachine.Runtime.Core;
 using UnityEngine;
 
-namespace TweensStateMachine.Animations.Scale
+namespace TweensStateMachine.Runtime.Animations.RectTransformAnimations
 {
     [System.Serializable]
-    public class ScaleAnimation : TweenAnimation
+    public class SizeDeltaAnimation : TweenAnimation
     {
-        public Transform target;
-        public Vector3 value;
-
+        public RectTransform target;
+        public Vector2 value;
+        
         protected override Tween StartInternal()
         {
-            return target.DOScale(value, duration);
+            return target.DOSizeDelta(value, duration);
         }
 
         public override void GetValue()
@@ -21,7 +21,7 @@ namespace TweensStateMachine.Animations.Scale
                 return;
             }
 
-            value = target.localScale;
+            value = target.sizeDelta;
         }
     }
 }

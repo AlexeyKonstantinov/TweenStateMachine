@@ -240,7 +240,9 @@ MonoBehaviour:
       stateExitAction: 1
       animations:
       - id: 0
-  - stateName: State228
+      - id: 1
+  _currentState:
+    stateName: 
     sequence:
       duration: 0
       delay: 0
@@ -250,14 +252,27 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: MoveAnimation, ns: TweensStateMachine.Animations.Move, asm: TweensStateMachine}
+      type: {class: IntensityAnimation, ns: TweensStateMachine.Runtime.Animations.LightAnimations, asm: TweensStateMachine}
       data:
-        duration: 2
-        delay: 0.5
+        duration: 1
+        delay: 0
         ease: 1
         stateExitAction: 0
-        target: {fileID: 515848748}
-        value: {x: -1.73, y: 0.23, z: 0.02}
+        target: {fileID: 705507994}
+        value: 0
+    00000001:
+      type: {class: ColorAnimation, ns: TweensStateMachine.Runtime.Animations.CameraAnimations, asm: TweensStateMachine}
+      data:
+        duration: 0
+        delay: 0
+        ease: 1
+        stateExitAction: 0
+        target: {fileID: 963194227}
+        value:
+          r: 0.74509805
+          g: 0.19607845
+          b: 0.10196079
+          a: 1
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

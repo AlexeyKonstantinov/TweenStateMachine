@@ -2,17 +2,17 @@ using DG.Tweening;
 using TweensStateMachine.Runtime.Core;
 using UnityEngine;
 
-namespace TweensStateMachine.Animations.Move
+namespace TweensStateMachine.Runtime.Animations.TransformAnimations
 {
     [System.Serializable]
-    public class MoveXAnimation : TweenAnimation
+    public class ScaleXAnimation : TweenAnimation
     {
         public Transform target;
         public float value;
 
         protected override Tween StartInternal()
         {
-            return target.DOMoveX(value, duration);
+            return target.DOScaleX(value, duration);
         }
 
         public override void GetValue()
@@ -20,8 +20,8 @@ namespace TweensStateMachine.Animations.Move
             if (target == null) {
                 return;
             }
-
-            value = target.position.x;
+            
+            value = target.localScale.x;
         }
     }
 }
